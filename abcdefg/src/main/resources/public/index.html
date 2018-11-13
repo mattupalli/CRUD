@@ -154,8 +154,32 @@
         {
           name: 'abc',
           age: 23,
-          nickname:5 ,
-          email: 'jhbj'
+          nickname:'a' ,
+          email: 'abc@gmail.com'
+
+        },
+
+        {
+          name: 'Javalin',
+          age: 2,
+          nickname:'jlin' ,
+          email: 'javalin@gmail.com'
+
+        },
+
+        {
+          name: 'Naming',
+          age: 234,
+          nickname:'name' ,
+          email: 'name@yahoo.com'
+
+        },
+
+        {
+          name: 'James Bond',
+          age: 45,
+          nickname: 007 ,
+          email: 'jb@mail.com'
 
         },
 
@@ -171,7 +195,7 @@
 
     deleteItem (item) {
       const index = this.users.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.users.splice(index, 1)
+      confirm('Do you want to delete this user?') && this.users.splice(index, 1)
     },
 
     close () {
