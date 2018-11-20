@@ -1,52 +1,66 @@
 const app = new Vue({
     el: "#app",
     data: {
-      editFriend: null,
-      friends: [],
+      editUser: null,
+      users: [],
     },
     methods: {
-      deleteFriend(id, i) {
+
+      deleteUser(id, i) {
         fetch("http://localhost:7000/users/" + id, {
           method: "DELETE"
         })
         .then(() => {
-          this.friends.splice(i, 1);
+          this.users.splice(i, 1);
         })
       },
-      updateFriend(friend) {
-        fetch("http://localhost:7000/users/" + friend.id, {
-          body: JSON.stringify(friend),
+      updateUser(user) {
+        fetch("http://localhost:7000/users/" + user.id, {
+          body: JSON.stringify(user),
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
         })
         .then(() => {
-          this.editFriend = null;
+          this.editUser = null;
         })
       }
     },
+
     mounted() {
       fetch("http://localhost:7000/users")
         .then(response => response.json())
         .then((data) => {
-          this.friends = data;
+          this.users = data;
         })
     },
     template: `
     <div>
-      <li v-for="friend, i in friends">
-        <div v-if="editFriend === friend.id">
-          <input v-on:keyup.13="updateFriend(friend)" v-model="friend.name" />
-          <input v-on:keyup.13="updateFriend(friend)" v-model="friend.email" />
-          <button v-on:click="updateFriend(friend)">save</button>
+      <li v-for="user, i in users">
+        <div v-if="editUser === user.id">
+          <v-text-field label="Name" v-on:keyup.10="updateUser(user)" v-model="user.name"/>
+          <v-text-field label="Email" v-on:keyup.10="updateUser(user)" v-model="user.email" />
+          <v-btn v-on:click="updateUser(user)" color="green" size="small">Update</v-btn>
         </div>
-        <div v-else>
-          <button v-on:click="editFriend = friend.id">edit</button>
-          <button v-on:click="deleteFriend(friend.id, i)">x</button>
-          {{friend.name}}  {{friend.email}}
+          <v-btn v-on:click="editUser= user.id" outline small fab color="blue">
+                <v-icon>edit</v-icon>
+              </v-btn>
+
+          <v-btn v-on:click="deleteUser(user.id, i)" color="orange" size="small">Delete</v-btn>
+
+
+            <tr class="text-xs-right">Name:  {{ user.name }}</tr>
+            <br>
+            <tr class="text-xs-right">Email:  {{ user.email }}</tr>
+            <br>
+            <tr class="text-xs-right">id:  {{ user.id }}</tr>
+            <hr>
+
+
+
+
         </div>
+
       </li>
+
     </div>
     `,
 });

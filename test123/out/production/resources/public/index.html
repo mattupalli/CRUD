@@ -2,17 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
 <body>
-<h1>Users</h1>
-<div id="app"></div>
+<h1>Users List</h1>
+<br><br>
+<p>Click on refresh to see the updated list of users after deleting a user from the list</p>
+<br><br>
+<div id="app">
 
-<script src="https://unpkg.com/vue"></script>
+</div>
+
+<v-btn><a href="http://localhost:7000/">Refresh</a></v-btn>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
 <script src="main.js"></script>
 </body>
 
